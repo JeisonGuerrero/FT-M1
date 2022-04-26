@@ -10,31 +10,31 @@ Determiná que será impreso en la consola, sin ejecutar el código.
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
 
 ```javascript
-x = 1;
-var a = 5;
-var b = 10;
+x = 1; 
+var a = 5; 
+var b = 10; 
 var c = function(a, b, c) {
   var x = 10;
-  console.log(x);
-  console.log(a);
+  console.log(x); //devuelve 10
+  console.log(a); // devuelve 5
   var f = function(a, b, c) {
-    b = a;
-    console.log(b);
-    b = c;
-    var x = 5;
+    b = a; // b toma el valor de a  
+    console.log(b); // devuelve 5
+    b = c; // b toma el valor de 10 
+    var x = 5; // devuelve 5
   }
-  f(a,b,c);
-  console.log(b);
+  f(a,b,c); // llama a la funcion de la variable f
+  console.log(b); // devuelve 10
 }
 c(8,9,10);
-console.log(b);
-console.log(x);
+console.log(b); // devuelve 10
+console.log(x); // devuelve 1
 ```
 
 ```javascript
-console.log(bar);
-console.log(baz);
-foo();
+console.log(bar);// devuelve 1
+console.log(baz);// devuelve 2
+foo();// devuelve "Hola!"
 function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;
@@ -45,19 +45,19 @@ var instructor = "Tony";
 if(true) {
     var instructor = "Franco";
 }
-console.log(instructor);
+console.log(instructor); // devuelve "Franco"
 ```
 
 ```javascript
 var instructor = "Tony";
-console.log(instructor);
+console.log(instructor);// devuelve "Tony"
 (function() {
    if(true) {
       var instructor = "Franco";
-      console.log(instructor);
+      console.log(instructor);//devuelve "Franco"
    }
 })();
-console.log(instructor);
+console.log(instructor);//devuelve"Tony"
 ```
 
 ```javascript
@@ -66,33 +66,33 @@ let pm = "Franco";
 if (true) {
     var instructor = "The Flash";
     let pm = "Reverse Flash";
-    console.log(instructor);
-    console.log(pm);
+    console.log(instructor);// devuelve "The Flash"
+    console.log(pm);//devuelve "Reverse Flash"
 }
-console.log(instructor);
-console.log(pm);
+console.log(instructor);// devuelve "Tony"
+console.log(pm);//devuelve "Franco"
 ```
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3" // 2
+"2" * "3" // 6
+4 + 5 + "px"// "9px"
+"$" + 4 + 5// "$45"
+"4" - 2// 2
+"4px" - 2// NaN
+7 / 0 //Infinity
+{}[0]//[0]
+parseInt("09")// devuelve 9
+5 && 2 // 2
+2 && 5 // 5
+5 || 0 // 5
+0 || 5 // 5
+[3]+[3]-[10] // 23
+3>2>1 // false
+[] == ![] // true
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -104,8 +104,8 @@ parseInt("09")
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a);// devuelve 1
+   console.log(foo()); // devuelve 2
 
    var a = 1;
    function foo() {
@@ -129,7 +129,7 @@ function getFood(food) {
     return snack;
 }
 
-getFood(false);
+getFood(false); // devuelve undefined (no devuelve "Meow Mix" por que la variable no se encuentra declarada en la funcion) 
 ```
 
 
@@ -149,11 +149,11 @@ var obj = {
    }
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname());// devuelve 'Aurelio De Rosa'
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test());// devuelve "Juan Perez"
 ```
 
 ### Event loop
@@ -162,11 +162,11 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 
 ```javascript
 function printing() {
-   console.log(1);
-   setTimeout(function() { console.log(2); }, 1000);
-   setTimeout(function() { console.log(3); }, 0);
-   console.log(4);
+   console.log(1);//2
+   setTimeout(function() { console.log(2); }, 1000);//5
+   setTimeout(function() { console.log(3); }, 0);//4
+   console.log(4);//3
 }
 
-printing();
+printing();// 1
 ```
