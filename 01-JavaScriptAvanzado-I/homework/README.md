@@ -32,8 +32,8 @@ console.log(x); // devuelve 1
 ```
 
 ```javascript
-console.log(bar);// devuelve 1
-console.log(baz);// devuelve 2
+console.log(bar);// devuelve undefine
+console.log(baz);// devuelve undefine
 foo();// devuelve "Hola!"
 function foo() { console.log('Hola!'); }
 var bar = 1;
@@ -104,7 +104,7 @@ parseInt("09")// devuelve 9
 
 ```javascript
 function test() {
-   console.log(a);// devuelve 1
+   console.log(a);// devuelve undefined
    console.log(foo()); // devuelve 2
 
    var a = 1;
