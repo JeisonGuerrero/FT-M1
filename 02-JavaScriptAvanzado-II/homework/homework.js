@@ -12,12 +12,7 @@ function counter() {
     contador = contador + 1;
     return contador;
  }
-}
- const newCounter = counter()
- newCounter();
- newCounter();
- newCounter();
-
+} 
 
 function cacheFunction(cb) {
   // Usa closures para crear un caché para la función cb.
