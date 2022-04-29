@@ -10,11 +10,68 @@
 // remove():   Head --> null y devuelve 1
 // search: Busca un valor dentro de la lista. Puede recibir un valor o una función. Si no hubiera resultados, devuelve null.
 
+
 function LinkedList() {
+  // var list = {}
+  this.head = null;
+  this._length = 0;
+
 
 }
 
-function Node(value){
+function Node(data) {
+  this.value = data;
+  this.next = null;
+
+}
+LinkedList.prototype.add = function (data) {
+  var node = new Node(data)
+  var current = this.head
+  if (current === null) {
+      this.head = node
+      this._length++
+      return node
+  }
+  while (current.next) {
+      current = current.next
+  }
+  current.next = node
+  this._length++
+  return node
+}
+
+LinkedList.prototype.remove = function () {
+  var current = this.head
+  if (current === null) {
+      return null
+  }
+  if (current.next == null) {
+      const removeValue = current.value
+      this.head = null
+      this._length--
+      return removeValue
+  }
+  var valorEliminado = null
+  while (current.next) {
+      if (current.next.next === null) {
+          valorEliminado = current.next.value
+          break
+
+      }
+      current = current.next
+  }
+  current.next = null
+  this._length--
+  return valorEliminado
+}
+
+LinkedList.prototype.search = function (value) {
+  var current = this.head
+      while (current) {
+      if ( current.value === value || (value instanceof Function && value(current.value) )) return current.value
+      current = current.next
+  }
+return null
 
 }
 
@@ -31,7 +88,48 @@ function Node(value){
 //    - Retornar dicho valor.
 
 function HashTable() {
+  this.array = []
+  // let index = 0
+  this.numBuckets = 35
 
+
+  this.set = function (key, value) {
+    // array[this.hash(val)] = value
+    let indice = this.hash(key);
+    // let toThrowError = TypeError()
+    if (indice === 0) throw TypeError("Keys must be strings")
+    if (!this.array[indice]) {
+      this.array[indice] = {};
+    }
+    this.array[indice][key] = value
+    // return this.array[indice]
+  };
+  
+  
+  this.get = function (key) {
+    // this.set(key, value)
+    let indice = this.hash(key);
+    if (!this.array[indice]) {
+      return null
+    }
+    return this.array[indice][key]
+  };
+  
+  
+  this.hasKey = function (key) {
+   return !!this.get(key)
+  };
+  
+  
+  this.hash = function (key){
+    let reference = 0
+    
+      for (let i = 0; i < key.length; i++) {
+      reference += key.charCodeAt(i)
+      }
+    // index = 
+    return reference%this.numBuckets
+  }
 }
 
 
