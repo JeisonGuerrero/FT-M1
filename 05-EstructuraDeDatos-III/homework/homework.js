@@ -81,6 +81,9 @@ BinarySearchTree.prototype.breadthFirstForEach = function (cb, array) {
   if (this.left) array.push(this.left)
   if (this.right) array.push(this.right)
   cb(this.value) 
+  if (array.length > 0) {
+    array.shift().breadthFirstForEach(cb, array);
+  }
 }
 BinarySearchTree.prototype.size = function () {
   if (!this.left && !this.right) return 1;
